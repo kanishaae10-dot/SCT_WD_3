@@ -1,0 +1,698 @@
+
+/* ---------- Theme and Reset ---------- */
+
+:root {
+    --background: #f6f7fb;
+    --surface: #ffffff;
+    --text: #20243a;
+    --muted: #858ba0;
+    --purple: #7157e8;
+    --purple-light: #f0edff;
+    --border: #e9eaf2;
+    --green: #21875a;
+    --green-light: #e9f8f0;
+    --red: #d84e61;
+    --red-light: #fff0f2;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-family: Arial, Helvetica, sans-serif;
+    background:
+        radial-gradient(ellipse at 50% 10%, #eae6ff 0%, transparent 42%),
+        var(--background);
+    color: var(--text);
+}
+
+button,
+input {
+    font: inherit;
+}
+
+button:focus-visible,
+input:focus-visible {
+    outline: 3px solid #b6aaff;
+    outline-offset: 3px;
+}
+
+button:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* ---------- Header ---------- */
+
+.topbar {
+    width: min(100% - 40px, 960px);
+    margin: 0 auto;
+    padding: 25px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.brand {
+    color: var(--text);
+    text-decoration: none;
+    font-size: 25px;
+    font-weight: 800;
+    letter-spacing: -1px;
+}
+
+.brand-icon,
+.brand-dot {
+    color: var(--purple);
+}
+
+.brand-icon {
+    margin-right: 5px;
+}
+
+.topbar-label {
+    color: var(--muted);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.7px;
+}
+
+/* ---------- Main App ---------- */
+
+.app {
+    width: min(100% - 32px, 680px);
+    margin: auto;
+    padding: 20px 0 45px;
+}
+
+.screen {
+    padding: clamp(24px, 5vw, 48px);
+    background: var(--surface);
+    border: 1px solid rgba(233, 234, 242, 0.9);
+    border-radius: 25px;
+    box-shadow: 0 20px 70px rgba(44, 39, 91, 0.08);
+    animation: appear 0.35s ease;
+}
+
+@keyframes appear {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.eyebrow {
+    color: var(--purple);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+/* ---------- Welcome Screen ---------- */
+
+.welcome-screen {
+    text-align: center;
+}
+
+.welcome-icon {
+    width: 68px;
+    height: 68px;
+    margin: 0 auto 25px;
+    display: grid;
+    place-items: center;
+    border-radius: 22px;
+    background: var(--purple-light);
+    color: var(--purple);
+    font-size: 36px;
+}
+
+.welcome-screen h1,
+.results-screen > h1 {
+    margin-top: 16px;
+    font-size: clamp(34px, 7vw, 48px);
+    line-height: 1.13;
+    letter-spacing: -2px;
+}
+
+.welcome-screen h1 span {
+    color: var(--purple);
+}
+
+.welcome-description {
+    max-width: 420px;
+    margin: 18px auto 28px;
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+.quiz-info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+    padding: 23px 8px;
+    margin: 0 auto 28px;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    background: #fcfcff;
+}
+
+.info-item {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.info-item strong {
+    font-size: 21px;
+}
+
+.info-item span {
+    color: var(--muted);
+    font-size: 10px;
+}
+
+.info-divider {
+    height: 35px;
+    width: 1px;
+    background: var(--border);
+}
+
+/* ---------- Buttons ---------- */
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    min-height: 47px;
+    padding: 13px 20px;
+    border: 1px solid transparent;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 700;
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.btn:hover:not(:disabled) {
+    transform: translateY(-2px);
+}
+
+.btn-primary {
+    background: var(--purple);
+    color: white;
+}
+
+.btn-primary:hover:not(:disabled) {
+    background: #6045d4;
+}
+
+.btn-secondary {
+    background: white;
+    color: var(--text);
+    border-color: var(--border);
+}
+
+.btn-secondary:hover:not(:disabled) {
+    background: #f8f7ff;
+    border-color: #cfc7ff;
+}
+
+.start-quiz-btn {
+    width: 100%;
+    max-width: 330px;
+}
+
+.start-quiz-btn span {
+    font-size: 18px;
+}
+
+.welcome-note {
+    margin-top: 20px;
+    color: var(--muted);
+    font-size: 11px;
+}
+
+/* ---------- Quiz Header and Progress ---------- */
+
+.quiz-topline {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+.question-counter {
+    color: var(--muted);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.6px;
+}
+
+.progress-track {
+    height: 7px;
+    margin-top: 20px;
+    overflow: hidden;
+    border-radius: 20px;
+    background: #efeff6;
+}
+
+.progress-fill {
+    width: 0;
+    height: 100%;
+    border-radius: inherit;
+    background: linear-gradient(90deg, #7157e8, #a18aff);
+    transition: width 0.35s ease;
+}
+
+/* ---------- Question Content ---------- */
+
+.question-content {
+    padding-top: 35px;
+}
+
+.question-number {
+    margin-bottom: 12px;
+    color: var(--purple);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+}
+
+.question-content h1 {
+    font-size: clamp(23px, 5vw, 31px);
+    line-height: 1.35;
+    letter-spacing: -0.7px;
+}
+
+.question-instruction {
+    margin-top: 12px;
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+/* ---------- Answer Options ---------- */
+
+.options-list {
+    display: grid;
+    gap: 12px;
+    margin-top: 25px;
+}
+
+.option {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    width: 100%;
+    min-height: 59px;
+    padding: 14px 16px;
+    border: 1px solid var(--border);
+    border-radius: 13px;
+    background: white;
+    color: var(--text);
+    text-align: left;
+    cursor: pointer;
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.option:hover:not(:disabled) {
+    border-color: #bcb0ff;
+    background: #faf9ff;
+}
+
+.option.selected {
+    border-color: var(--purple);
+    background: var(--purple-light);
+}
+
+.option-marker {
+    flex: 0 0 28px;
+    width: 28px;
+    height: 28px;
+    display: grid;
+    place-items: center;
+    border: 1px solid #dedfeb;
+    border-radius: 9px;
+    color: var(--muted);
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.option.selected .option-marker {
+    border-color: var(--purple);
+    background: var(--purple);
+    color: white;
+}
+
+.option-text {
+    flex: 1;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.option-check {
+    color: var(--purple);
+    font-weight: 800;
+}
+
+/* ---------- Fill in the Blank ---------- */
+
+.fill-answer {
+    margin-top: 25px;
+}
+
+.fill-answer label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.fill-answer input {
+    width: 100%;
+    padding: 16px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: #fff;
+    color: var(--text);
+    font-size: 14px;
+}
+
+.fill-answer input:focus {
+    border-color: var(--purple);
+    outline: 3px solid var(--purple-light);
+}
+
+/* ---------- Answer Feedback ---------- */
+
+.feedback {
+    margin-top: 20px;
+    padding: 14px 16px;
+    border-radius: 12px;
+    font-size: 12px;
+    line-height: 1.7;
+}
+
+.feedback.correct {
+    background: var(--green-light);
+    color: var(--green);
+}
+
+.feedback.incorrect {
+    background: var(--red-light);
+    color: var(--red);
+}
+
+/* ---------- Quiz Actions ---------- */
+
+.quiz-actions {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 32px;
+    padding-top: 23px;
+    border-top: 1px solid var(--border);
+}
+
+.quiz-actions .btn-primary {
+    margin-left: auto;
+}
+
+/* ---------- Results Screen ---------- */
+
+.results-screen {
+    text-align: center;
+}
+
+.result-icon {
+    width: 76px;
+    height: 76px;
+    margin: 0 auto 23px;
+    display: grid;
+    place-items: center;
+    border-radius: 25px;
+    background: #fff5d8;
+    font-size: 38px;
+}
+
+.results-screen > h1 {
+    font-size: clamp(32px, 6vw, 43px);
+}
+
+.result-message {
+    margin-top: 12px;
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+.score-circle {
+    width: 155px;
+    height: 155px;
+    margin: 28px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    border: 8px solid var(--purple-light);
+    border-radius: 50%;
+    background: #faf9ff;
+    box-shadow: inset 0 0 0 1px #e5dfff;
+}
+
+.score-value {
+    color: var(--purple);
+    font-size: 37px;
+    font-weight: 800;
+    letter-spacing: -1px;
+}
+
+.score-caption {
+    color: var(--muted);
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+}
+
+.result-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin: 25px 0 35px;
+}
+
+.stat-card {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    padding: 19px 8px;
+    border: 1px solid var(--border);
+    border-radius: 13px;
+    background: #fcfcff;
+}
+
+.stat-card strong {
+    font-size: 22px;
+}
+
+.stat-card span {
+    color: var(--muted);
+    font-size: 10px;
+}
+
+.review-section {
+    padding-top: 25px;
+    border-top: 1px solid var(--border);
+    text-align: left;
+}
+
+.review-section h2 {
+    margin-bottom: 16px;
+    font-size: 17px;
+}
+
+.review-list {
+    display: grid;
+    gap: 12px;
+}
+
+.review-item {
+    padding: 15px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: white;
+}
+
+.review-item.review-correct {
+    border-left: 4px solid var(--green);
+}
+
+.review-item.review-incorrect {
+    border-left: 4px solid var(--red);
+}
+
+.review-question {
+    margin-bottom: 9px;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1.6;
+}
+
+.review-answer {
+    margin-top: 5px;
+    color: var(--muted);
+    font-size: 11px;
+    line-height: 1.7;
+}
+
+.review-answer strong {
+    color: var(--text);
+}
+
+.review-status {
+    display: inline-block;
+    margin-bottom: 8px;
+    font-size: 10px;
+    font-weight: 800;
+}
+
+.review-correct .review-status {
+    color: var(--green);
+}
+
+.review-incorrect .review-status {
+    color: var(--red);
+}
+
+.retry-btn {
+    width: 100%;
+    margin-top: 25px;
+}
+
+/* ---------- Footer ---------- */
+
+.footer {
+    width: min(100% - 40px, 960px);
+    margin: auto auto 0;
+    padding: 20px 0 25px;
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    color: var(--muted);
+    font-size: 10px;
+}
+
+/* ---------- Mobile Layout ---------- */
+
+@media (max-width: 480px) {
+    .topbar {
+        width: calc(100% - 28px);
+        padding: 20px 0;
+    }
+
+    .brand {
+        font-size: 22px;
+    }
+
+    .topbar-label {
+        max-width: 120px;
+        text-align: right;
+        font-size: 8px;
+        letter-spacing: 1px;
+    }
+
+    .app {
+        width: calc(100% - 20px);
+        padding: 10px 0 30px;
+    }
+
+    .screen {
+        padding: 24px 17px;
+        border-radius: 19px;
+    }
+
+    .quiz-info {
+        gap: 13px;
+    }
+
+    .info-item strong {
+        font-size: 18px;
+    }
+
+    .info-item span {
+        font-size: 9px;
+    }
+
+    .quiz-topline {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .question-content {
+        padding-top: 27px;
+    }
+
+    .option {
+        padding: 12px;
+    }
+
+    .quiz-actions .btn {
+        padding: 12px 13px;
+        font-size: 11px;
+    }
+
+    .result-stats {
+        gap: 7px;
+    }
+
+    .stat-card {
+        padding: 16px 5px;
+    }
+
+    .stat-card strong {
+        font-size: 19px;
+    }
+
+    .footer {
+        width: calc(100% - 28px);
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+}
+
+/* ---------- Reduced Motion ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+    }
+}

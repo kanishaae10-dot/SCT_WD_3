@@ -1,0 +1,140 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="An interactive quiz game with multiple question types and score tracking.">
+    <title>Quizora | Interactive Quiz Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="topbar">
+        <a href="#" class="brand"><span class="brand-icon">✳</span> quizora<span class="brand-dot">.</span></a>
+        <span class="topbar-label">TEST YOUR KNOWLEDGE</span>
+    </header>
+
+    <main class="app">
+        <!-- Welcome Screen -->
+        <section class="screen welcome-screen" id="welcome-screen">
+            <div class="welcome-icon">✦</div>
+            <p class="eyebrow">LEARN SOMETHING NEW</p>
+            <h1>Ready to test<br>your <span>knowledge?</span></h1>
+            <p class="welcome-description">
+                Challenge yourself with a quick quiz covering web development,
+                programming and technology.
+            </p>
+
+            <div class="quiz-info">
+                <div class="info-item">
+                    <strong>10</strong>
+                    <span>Questions</span>
+                </div>
+                <div class="info-divider"></div>
+                <div class="info-item">
+                    <strong>3</strong>
+                    <span>Question types</span>
+                </div>
+                <div class="info-divider"></div>
+                <div class="info-item">
+                    <strong>100</strong>
+                    <span>Points total</span>
+                </div>
+            </div>
+
+            <button type="button" class="btn btn-primary start-quiz-btn" id="begin-btn">
+                Start Quiz <span>→</span>
+            </button>
+            <p class="welcome-note">No pressure. Just do your best!</p>
+        </section>
+
+        <!-- Quiz Screen -->
+        <section class="screen quiz-screen hidden" id="quiz-screen">
+            <div class="quiz-topline">
+                <span class="eyebrow" id="question-type">SINGLE CHOICE</span>
+                <span class="question-counter" id="question-counter">QUESTION 01 / 10</span>
+            </div>
+
+            <div class="progress-track" role="progressbar"
+                 id="progress-track" aria-label="Quiz progress"
+                 aria-valuemin="0" aria-valuemax="10" aria-valuenow="0">
+                <div class="progress-fill" id="progress-fill"></div>
+            </div>
+
+            <div class="question-content">
+                <p class="question-number" id="question-number">QUESTION 01</p>
+                <h1 id="question-text">Question goes here?</h1>
+                <p class="question-instruction" id="question-instruction">
+                    Select the correct answer.
+                </p>
+
+                <div class="options-list" id="options-list"></div>
+
+                <div class="fill-answer hidden" id="fill-answer">
+                    <label for="fill-input">Your answer</label>
+                    <input id="fill-input" type="text"
+                           placeholder="Type your answer here..."
+                           autocomplete="off">
+                </div>
+
+                <div class="feedback hidden" id="feedback" role="status"></div>
+            </div>
+
+            <div class="quiz-actions">
+                <button type="button" class="btn btn-secondary"
+                        id="quit-btn">Quit Quiz</button>
+                <button type="button" class="btn btn-primary"
+                        id="submit-btn">Check Answer</button>
+                <button type="button" class="btn btn-primary hidden"
+                        id="next-btn">Next Question →</button>
+            </div>
+        </section>
+
+        <!-- Results Screen -->
+        <section class="screen results-screen hidden" id="results-screen">
+            <div class="result-icon" id="result-icon">🏆</div>
+            <p class="eyebrow">QUIZ COMPLETED</p>
+            <h1 id="result-heading">Well done!</h1>
+            <p class="result-message" id="result-message">
+                Here's how you performed.
+            </p>
+
+            <div class="score-circle" id="score-circle">
+                <span class="score-value" id="score-value">0%</span>
+                <span class="score-caption">YOUR SCORE</span>
+            </div>
+
+            <div class="result-stats">
+                <div class="stat-card">
+                    <strong id="correct-count">0</strong>
+                    <span>Correct</span>
+                </div>
+                <div class="stat-card">
+                    <strong id="incorrect-count">0</strong>
+                    <span>Incorrect</span>
+                </div>
+                <div class="stat-card">
+                    <strong id="points-count">0/100</strong>
+                    <span>Points</span>
+                </div>
+            </div>
+
+            <div class="review-section">
+                <h2>Answer Review</h2>
+                <div id="review-list" class="review-list"></div>
+            </div>
+
+            <button type="button" class="btn btn-primary retry-btn"
+                    id="retry-btn">Try Again ↻</button>
+            <p class="welcome-note">Every attempt is a chance to improve.</p>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <span>Made for curious minds.</span>
+        <span>HTML · CSS · JavaScript</span>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
